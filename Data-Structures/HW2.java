@@ -6,8 +6,8 @@ package hw2;
  *
  */
 public class MyString {
+	private static final String String = null;
 	private char[] data;
-	private String string;
 
 	/**
 	 * Construct a <code>MyString</code> object to represent the text in
@@ -15,55 +15,74 @@ public class MyString {
 	 * @param string the <code>String</code> we are representing.
 	 */
 	public MyString(String string) {
-		this.string = string;
+		data = new char[string.length() + 1];
+		for(int i=0; i < string.length(); i++)
+		{
+			data[i] = string.charAt(i);
+		}
 	}
 
 	/**
 	 * A lexicographical comparison of <code>this Mystring</code> to <code>other</code>.
 	 * The comparison is case sensitive, meaning it might not return the correct answer
 	 * if the text being compared isn't all the same case.
-	 * 
+	 *
 	 * @param other the <code>MyString<code> to compare against.
 	 * @return a negative number if <code>this</code> appears before <code>other</code>
 	 * in the dictionary, a positive number if <code>this</code> appears after
 	 * <code>other</code> in the dictonary, and 0 if <code>this</code> and <code>other</code>
 	 * represent the same <code>String</code>
 	 */
-	// Are we supposed to compare other to String "string"
+
 	public int compareTo(MyString other) {
-		if(other.equals(string)) {
+		int i=0;
+		while(this.data[i] == other.data[i])
+		{
+			if(i == this.length() && i == other.length())
+			{
+				return 0;
+			}
+			i++;
+		}
+		if(this.data[i] > other.data[i])
+		{
 			return 1;
 		}
-		return 0;
+		else
+		{
+			return -1;
+		}
+		
 	}
 	// 
 	public char charAt(int i) {
-		char x = string.charAt(i);
-		return x;
+		return data[i];
 	}
 
 	public int length() {
-		int lng = string.length();
-		return lng;
+		int i=0;
+		while(data[i] != 0)
+		{
+			i ++;
+		}
+		return i;
 	}
 	// What should I return for index 0? 0 or 1?
 	// What do I return if false?
 	public int indexOf(char c) {
-		int indx = 0;
-		for(int i=0; i< string.length(); i++)
+		int i=0;
+		while(data[i] != 0)
 		{
-			char x = string.charAt(i);
-			if(c.equals(x)) {
-				indx = i;
-				return indx;
+			if(c == data[i]) {
+				return i;
 			}
+			i++;
 		}
-		return 0;
+		return -1;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO
-		return false;
+		return(this == obj);
 	}
 }
