@@ -20,6 +20,7 @@ public class MyString {
 		{
 			data[i] = string.charAt(i);
 		}
+//		this.string = string;
 	}
 
 	/**
@@ -83,6 +84,17 @@ public class MyString {
 
 	@Override
 	public boolean equals(Object obj) {
-		return(this == obj);
+		MyString that = (MyString) obj;
+		if(this.length() != that.length())
+		{
+			return false;
+		}	
+		for(int i=0; i<this.length(); i++)
+		{
+			if(this.data[i] != that.data[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
