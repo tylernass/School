@@ -1,4 +1,9 @@
+package hw3;
 
+import java.awt.Color;
+import edu.princeton.cs.algs4.StdDraw;
+
+public class BouncingBalls {
 	// Number of balls
 	private static final int BALL_COUNT = 4;
 	
@@ -22,6 +27,7 @@
 		StdDraw.clear(Color.BLACK);
 		
 		// Let the Ball class know the min and max coordinates of the window
+		// Ball.setScreen(-WINDOW_MAX, -WINDOW_MAX, WINDOW_MAX, WINDOW_MAX);
 		Ball.setScreen(-WINDOW_MAX, -WINDOW_MAX, WINDOW_MAX, WINDOW_MAX);
 		
 		// Initialize Ball objects in animation
@@ -64,7 +70,7 @@
 	private static boolean checkCollisions(Ball[] b) {
 		for(int i=0; i < 4; i++)
 		{
-			if(Ball.collision(b[i])) {
+			if(Ball.collision(b)) {
 				return true;
 			}
 		}
@@ -89,4 +95,4 @@
 			Ball b = new Ball(x, y, r, vX, vY, c);
 			return b;
 		}
-	
+	}
