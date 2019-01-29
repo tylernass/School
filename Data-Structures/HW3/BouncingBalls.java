@@ -68,9 +68,10 @@ public class BouncingBalls {
 	 * <code>false</code> otherwise.
 	 */
 	private static boolean checkCollisions(Ball[] b) {
-		for(int i=0; i < 4; i++)
+		for(Ball ball: b)
 		{
-			if(Ball.collision(b)) {
+			ball.move();
+			if(ball.collision(ball)) {
 				return true;
 			}
 		}
