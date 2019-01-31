@@ -23,8 +23,10 @@ public class Point {
 	 * @param newY the new y coordinate for this <code>Point</code>.
 	 */
 	public void moveTo(double newX, double newY) {
-		newX = Math.random()*(400-x);
-		newY = Math.random()*(400-y);
+//		newX = Math.random()*(400-x);
+//		newY = Math.random()*(400-y);
+		x = newX;
+		y = newY;
 	}
 
 	/**
@@ -50,12 +52,13 @@ public class Point {
 	 */
 	public double distance(Point p2) {
 		//TODO - This code is wrong and needs to be changed
-
-		double x1 = p2.getX();
-		double y1 = p2.getY();
-		double x2 = this.x;
-		double y2 = this.y;
-		double dist = Math.sqrt(Math.pow((x1-x2), x) + Math.pow((y1-y2), y));
+		// Fix this up
+		double x1 = this.x;
+		double y1 = this.y; // p2.getY()
+		double x2 = p2.x;
+		double y2 = p2.y;
+		double dist = Math.sqrt(Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2));
 		return dist;
 	}
 }
+
