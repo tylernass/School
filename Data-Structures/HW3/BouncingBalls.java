@@ -3,7 +3,12 @@ package hw3;
 import java.awt.Color;
 import edu.princeton.cs.algs4.StdDraw;
 
-public class BouncingBalls {
+public class BouncingBalls extends Ball {
+	public BouncingBalls(double centerX, double centerY, double r, double vX, double vY, Color col) {
+		super(centerX, centerY, r, vX, vY, col);
+		// TODO Auto-generated constructor stub
+	}
+
 	// Number of balls
 	private static final int BALL_COUNT = 4;
 	
@@ -68,14 +73,25 @@ public class BouncingBalls {
 	 * <code>false</code> otherwise.
 	 */
 	private static boolean checkCollisions(Ball[] b) {
-		for(Ball ball: b)
+		// [1, 2, 3, 4]
+		// 1 2  1 3  1 4
+		// 2 3  2 4
+		// 3 4
+
+		for(int i=0; i<b.length-1; i++)
 		{
-			ball.move();
-			if(ball.collision(ball)) {
-				return true;
+			for(int j=i+1; j<b.length; j++)
+			{
+				if(j == Ball.length())
+				{
+					return false;
+				}
+				if(b[i].collision(b[j]))
+				{
+					return true;
+				}
 			}
 		}
-		
 		return false;
 	}
 	
