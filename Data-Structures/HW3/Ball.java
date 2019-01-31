@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.StdDraw;
 /**
  * A class that models a bounding ball
  */
-public class Ball {
+public class Ball{
 	// Minimum and maximum x and y values for the screen
 	private static double minX;
 	private static double minY;
@@ -48,6 +48,7 @@ public class Ball {
 	 * @param vY the velocity of the ball along the y-axis
 	 * @param col the color of the ball
 	 */
+	// public Ball(double centerX, double centerY, double r, double vX, double vY, Color col)
 	public Ball(double centerX, double centerY, double r, double vX, double vY, Color col) {
 		center = new Point(centerX, centerY);
 		radius = r;
@@ -65,19 +66,31 @@ public class Ball {
 	public void move() {
 		double centerX = center.getX();
 		double centerY = center.getY();
-		centerX = center.getX() + vX;
-		centerY = center.getY() + vY;
-		
-		if(centerX > maxX || centerX < minX)
+		// Detect edge collisions
+		if((centerX+radius) >= maxX || (centerX-radius) <= minX)
 		{
 			vX = -vX;
-			centerX = center.getX() + vX;
+			if(centerX >= maxX) {
+				centerX = 400;
+			}
+			if(centerX <= minX) {
+				centerX = 0;
+			}
+//			centerX = centerX + (vX*centerX);
 		}
-		if(centerY > maxY || centerY < minY)
+		if((centerY+radius) >= maxY || (centerY-radius) <= minY)
 		{
 			vY = -vY;
-			centerY = center.getY() + vY;
+			if(centerY >= maxY) {
+				centerY = 400-radius;
+			}
+			if(centerY <= minY) {
+				centerY = 0+radius;
+			}
 		}
+		centerX = centerX + vX;
+		centerY = centerY + vY;
+		center.moveTo(centerX, centerY);
 	}
 	
 	/**
@@ -87,13 +100,21 @@ public class Ball {
 	 * <code>b2</code>.
 	 */
 	public boolean collision(Ball b2) {
-		double x = Math.abs(this.center.getX() - b2.center.getX());
-		double y = Math.abs(this.center.getY() - b2.center.getY());
-		if((this.radius + b2.radius) <= (x + y))
-		{
+		// Call distance fucntion from Point class
+		// distance(Point p2)
+		
+		if(this.center.distance(b2.center) <= (this.radius + b2.radius)) {
+			
 			return true;
 		}
 		return false;
+//		double x = Math.abs(this.center.getX() - b2.center.getX());
+//		double y = Math.abs(this.center.getY() - b2.center.getY());
+//		if((this.radius + b2.radius) >= (x + y))
+//		{
+//			return true;
+//		}
+//		return false;
 	}
 	
 	/**
@@ -105,7 +126,6 @@ public class Ball {
 	}
 
 	public static int length() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
