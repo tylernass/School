@@ -40,11 +40,11 @@ public class StringQueue {
 
 	/**
 	 * Adds the item to this queue.
-	 *
+	 * Push item onto stack2
 	 * @param  item the item to add
 	 */
 	public void enqueue(String item) {
-		stack1.push(item);
+		stack2.push(item);
 	}
 
 	/**
