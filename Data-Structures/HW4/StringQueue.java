@@ -40,11 +40,11 @@ public class StringQueue {
 
 	/**
 	 * Adds the item to this queue.
-	 * Push item onto stack2
+	 *
 	 * @param  item the item to add
 	 */
 	public void enqueue(String item) {
-		stack2.push(item);
+		stack1.push(item);
 	}
 
 	/**
@@ -55,7 +55,12 @@ public class StringQueue {
 	 * @return the item on this queue that was least recently added
 	 */
 	public String dequeue() {
-		stack2.pop();
+		// Three Two One
+		if(stack2.isEmpty()) {
+			while(!stack1.isEmpty())
+				stack2.push(stack1.pop());
+			// One Two Three
+		}
 		return stack2.pop();
 	}
 }
